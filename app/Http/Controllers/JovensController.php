@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use DB;
+use App\Joven;
+use App\Igreja;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class JovensController extends Controller
 {
@@ -22,8 +26,10 @@ class JovensController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        return view('adminlte::jovens/create');
+    {        
+        $igrejas = Igreja::all();
+                 
+        return view('adminlte::jovens/create',compact('igrejas'));
     }
 
     /**
@@ -32,9 +38,19 @@ class JovensController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request)    
     {
-        //
+        $this->validate($request,[
+            'nome'=>'required|max:255',
+        ]);
+
+        $joven= new Joven();
+        $joven =  $joven->create($request->all());      
+         
+        \Session::flash('mensagem_sucesso','Cadastrado com sucesso!');
+        \Session::flash('mensagem_sucesso_warning','Você de inscrever mais participantes.');    
+              
+        return  Redirect::to('jovens/create');     
     }
 
     /**

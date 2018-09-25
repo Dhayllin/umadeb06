@@ -17,9 +17,13 @@ class JovensController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
-        $list = DB::table('jovens')->select('jovens.*')->paginate(10);
+        $list = DB::table('jovens')->select('jovens.*','igrejas.descricao')->
+                        leftjoin('igrejas','jovens.igreja_id','=','igrejas.id')->
+                        orderBy('nome', 'asc')->
+                        paginate(10);
 
         return view('adminlte::jovens/index',compact('list'));
     }
@@ -32,7 +36,7 @@ class JovensController extends Controller
     public function create()
     {        
         $igrejas = Igreja::all();
-                 
+                         
         return view('adminlte::jovens/create',compact('igrejas'));
     }
 
@@ -47,6 +51,7 @@ class JovensController extends Controller
         $this->validate($request,[
             'nome'=>'required|max:255',
         ]);
+
 
         $joven= new Joven();
         $joven =  $joven->create($request->all());      

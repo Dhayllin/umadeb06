@@ -29,12 +29,12 @@
               
                 <td>{{ $item->nome }}</td>
                 <td>{{ $item->idade }}</td>
-                <td>{{ $item->telefone }}</td>
-                @if($item->igreja_id == null)
-                <td>{{ $item->igreja_id }}</td>
-                @else
-                <td>{{ $item->igreja_diff }}</td>
-                @endif
+                <td>{{ $item->telefone }}</td>  
+                @if($item->descricao != null )             
+                <td>{{ $item->descricao }}</td>  
+                @else    
+                <td>{{ $item->igreja_diff }}</td>  
+                @endif         
                 <td> {{ $item->cargo}}
                 <td class="text-right">                 
                   <a class="btn btn-xs btn-warning" href="#"><i class="glyphicon glyphicon-edit"></i> Editar</a>

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Joven extends Model
 {
     protected $fillable = [
-        'nome','telefone','cargo','igreja_id'
+        'nome','telefone','cargo','igreja_id','idade','igreja_diff'
     ];
 
     public function igrejas(){

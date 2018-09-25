@@ -7,6 +7,9 @@
 
 namespace App\Http\Controllers;
 
+use DB;
+use App\Joven;
+use Illuminate\Support\Carbon;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 
@@ -33,6 +36,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('adminlte::home');
+        $total_inscritos = Joven::all()->count();
+        $total_inscritos_hoje= DB::table('jovens')->whereDate('created_at', date('Y-m-d',strtotime(Carbon::today())))->count();
+        return view('adminlte::home',compact('total_inscritos'),compact('total_inscritos_hoje'));
     }
 }

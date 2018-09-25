@@ -10,9 +10,12 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+use App\Igreja;
 
 Route::get('/', function () {
-    return view('welcome');
+    $igrejas = Igreja::all();
+                 
+    return view('adminlte::jovens/create',compact('igrejas'));
 });
 
 Route::group(['middleware' => 'web'], function () {

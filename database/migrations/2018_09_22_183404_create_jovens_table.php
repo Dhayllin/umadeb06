@@ -16,9 +16,11 @@ class CreateJovensTable extends Migration
         Schema::create('jovens', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nome');
+            $table->integer('idade');
             $table->string('telefone');
             $table->string('cargo');
             $table->integer('igreja_id');
+            $table->string('igreja_diff');
             $table->timestamps();
         });
     }

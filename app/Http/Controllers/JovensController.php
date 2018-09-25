@@ -6,7 +6,9 @@ use DB;
 use App\Joven;
 use App\Igreja;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Redirect;
+
 
 class JovensController extends Controller
 {
@@ -17,7 +19,9 @@ class JovensController extends Controller
      */
     public function index()
     {
-        return "INDE";
+        $list = DB::table('jovens')->select('jovens.*')->paginate(10);
+
+        return view('adminlte::jovens/index',compact('list'));
     }
 
     /**
@@ -48,9 +52,9 @@ class JovensController extends Controller
         $joven =  $joven->create($request->all());      
          
         \Session::flash('mensagem_sucesso','Cadastrado com sucesso!');
-        \Session::flash('mensagem_sucesso_warning','Você de inscrever mais participantes.');    
+        \Session::flash('mensagem_sucesso_warning','Você pode inscrever mais participantes.');    
               
-        return  Redirect::to('jovens/create');     
+          return  Redirect::to('/');   
     }
 
     /**

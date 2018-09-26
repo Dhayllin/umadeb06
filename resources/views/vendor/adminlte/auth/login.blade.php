@@ -8,10 +8,9 @@
 <body class="hold-transition login-page">
     <div id="app">
         <div class="login-box">
-            <div class="login-logo">
-                <a href="{{ url('/home') }}"><b>Admin</b>LTE</a>
-            </div><!-- /.login-logo -->
-
+        <div class="login-logo">
+            <b>UMADED </b> SETOR 06
+        </div><!-- /.login-logo -->
         @if (count($errors) > 0)
             <div class="alert alert-danger">
                 <strong>Whoops!</strong> {{ trans('adminlte_lang::message.someproblems') }}<br><br>
@@ -22,7 +21,6 @@
                 </ul>
             </div>
         @endif
-
         <div class="login-box-body">
         <p class="login-box-msg"> Entre para iniciar sua sessão </p>
         <form action="{{ url('/login') }}" method="post">

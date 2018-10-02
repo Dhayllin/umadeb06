@@ -9,8 +9,4 @@ class Joven extends Model
     protected $fillable = [
         'nome','telefone','cargo','igreja_id','idade','igreja_diff'
     ];
-
-    public function igrejas(){
-        
-    }
 }

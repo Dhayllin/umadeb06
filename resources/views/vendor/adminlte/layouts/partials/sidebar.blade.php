@@ -17,16 +17,16 @@
                         <span>Jovens</span>
                     </a>
             </li>
-            <li {{{ (Request::is('matriz') ? 'class=active' : '') }}} |
-                {{{ (Request::is('matriz/*') ? 'class=active' : '') }}}
-                {{{ (Request::is('matriz/*/*') ? 'class=active' : '') }}}>
-                <a href="{{ url('#') }}">
+            <li {{{ (Request::is('users') ? 'class=active' : '') }}} |
+                {{{ (Request::is('users/*') ? 'class=active' : '') }}}
+                {{{ (Request::is('users/*/*') ? 'class=active' : '') }}}>
+                <a href="{{ url('users') }}">
                     <i class='fa fa-users'></i> 
-                    <span>Líderes</span>
+                    <span>Acessos</span>
                 </a>
             </li>  
-            <li>
-                <a href="{{ url('#') }}">
+            <li {{ (Request::is('igrejas')  ? 'class=active' : '')}}>
+                <a href="{{ route('igrejas.index') }}">
                     <i class='fa  fa-home'></i> 
                     <span>Igrejas</span>
                 </a>

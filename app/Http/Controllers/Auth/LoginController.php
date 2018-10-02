@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers\Auth;
 
+use DB;
+use App\User;
+use App\Joven;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class LoginController extends Controller
 {
@@ -35,7 +40,18 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected function authenticated($request){
+         
+         $user = User::where('email',$request->email)->first();
+
+         if($user->categoria_lider_id == 3){
+             return Redirect::to('home');
+         }
+
+         $total_inscritos_lideres = DB::table('jovens')->where('igreja_id',$user->igreja_id)->count();  
+
+         return view('adminlte::lideres_home',compact('total_inscritos_lideres','user'));
+    }   
 
     /**
      * Create a new controller instance.
@@ -46,4 +62,6 @@ class LoginController extends Controller
     {
         $this->middleware('guest', ['except' => 'logout']);
     }
+
+  
 }

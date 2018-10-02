@@ -20,6 +20,14 @@ Route::get('/', function () {
 
 Route::group(['middleware' => 'web'], function () {
 
+     
+    Route::get('jovens/lideres_index/{igreja_id}','JovensController@lideresIndex')->name('lideres_index');
+    
     Route::resource('jovens', 'JovensController');
+   
+    Route::resource('igrejas', 'IgrejaController');
 
+    Route::resource('users', 'UserController');
+   
+    Route::get('lideres_home/{igreja_id}','HomeController@lideresHome')->name('lideres_home');
 });

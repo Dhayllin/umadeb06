@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Igreja extends Model
+class Categoria_lider extends Model
 {
     protected $fillable=[
-        'id','descricao','endereco'
+        'id','descricao_categoria'
     ];
 }

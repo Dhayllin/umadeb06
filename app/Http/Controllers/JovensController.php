@@ -104,6 +104,22 @@ class JovensController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $item = Joven::findOrFail($id);
+        $item->delete();
+
+        \Session::flash('mensagem_sucesso','Deletado com sucesso!');
+
+        return Redirect::to('jovens');
     }
+
+   public function lideresIndex($id){
+
+        $list = DB::table('jovens')->select('jovens.*','igrejas.descricao')
+                                    ->where('igreja_id',$id)
+                                    ->leftjoin('igrejas','jovens.igreja_id','=','igrejas.id')                                
+                                    ->orderBy('nome', 'asc')
+                                    ->paginate(10);
+
+        return  view('adminlte::jovens/lideres_index',compact('list'));
+   }
 }

@@ -35,7 +35,14 @@ desired effect
 
     @include('adminlte::layouts.partials.mainheader')
 
-    @include('adminlte::layouts.partials.sidebar')
+   {{----}} 
+    @if(Auth::check())
+    @if (Auth::user()->categoria_lider_id==3)
+        @include('adminlte::layouts.partials.sidebar')
+    @elseif (Auth::user()->categoria_lider_id==1)
+        @include('adminlte::layouts.partials.lideres_sidebar')
+    @endif
+    @endif
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">

@@ -1,7 +1,7 @@
 @extends('adminlte::layouts.auth')
 
 @section('htmlheader_title')
-    Log in
+    Entrar
 @endsection
 
 @section('content')
@@ -9,7 +9,7 @@
     <div id="app">
         <div class="login-box">
         <div class="login-logo">
-            <b>UMADED </b> SETOR 06
+            <b>UMADEB </b> SETOR 06
         </div><!-- /.login-logo -->
         @if (count($errors) > 0)
             <div class="alert alert-danger">
@@ -44,7 +44,6 @@
     </div><!-- /.login-box -->
     </div>
     @include('adminlte::layouts.partials.scripts_auth')
-
     <script>
         $(function () {
             $('input').iCheck({

@@ -70,8 +70,15 @@ class JovensController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
+
+    public function  showLiderSetor($id)
+    {
+        
+    }
+
+   
 
     /**
      * Show the form for editing the specified resource.
@@ -86,6 +93,15 @@ class JovensController extends Controller
        
 
        return view('adminlte::jovens/edit',compact('item','igrejas'));
+    }
+
+    public function editLiderSetorial($id)
+    {
+       $item = Joven::findOrFail($id);
+       $igrejas = Igreja::all();
+       
+
+       return view('adminlte::jovens/edit_lider_setorial',compact('item','igrejas'));
     }
 
     /**
@@ -115,6 +131,13 @@ class JovensController extends Controller
         return view('adminlte::jovens/show',compact('item')); 
     }
 
+
+    public function updateLiderSetor(Request $request, $id)
+    {
+              
+        return "view('adminlte::jovens/show_lider_setorial',compact('item'))"; 
+    }
+
     /**
      * Remove the specified resource from storage.
      *
@@ -141,4 +164,18 @@ class JovensController extends Controller
 
         return  view('adminlte::jovens/lideres_index',compact('list'));
    }
+
+   //  aqui o líder setorial tem acesso aos jovens de cada igreja 
+   // e ainda pode editar ou excluir estando na igreja X
+
+   public function lideresIndexSetorial($id){
+
+    $list = DB::table('jovens')->select('jovens.*','igrejas.descricao')
+                                ->where('igreja_id',$id)
+                                ->leftjoin('igrejas','jovens.igreja_id','=','igrejas.id')                                
+                                ->orderBy('nome', 'asc')
+                                ->paginate(10);
+
+    return  view('adminlte::jovens/index_lider_setorial',compact('list'));
+}
 }

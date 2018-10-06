@@ -8,7 +8,7 @@
                     <span>{{ trans('adminlte_lang::message.home') }}</span>
                 </a>
             </li>            
-            <li {{ (Request::is('jovens/')  ? 'class=active' : '') | 
+         <!--   <li {{ (Request::is('jovens/')  ? 'class=active' : '') | 
                       (Request::is('jovens/*')  ? 'class=active' : '') |  
                       (Request::is('jovens/*/*')  ? 'class=active' : '')  }}>
                 <a href="#">
@@ -38,7 +38,7 @@
                     <i class='fa fa-area-chart'></i> 
                     <span>Relatórios</span>
                 </a>
-            </li>
+            </li>-->
         </ul>
     </section>
 </aside>

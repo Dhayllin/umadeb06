@@ -9,14 +9,14 @@
                         <span>{{ trans('adminlte_lang::message.home') }}</span>
                     </a>
             </li>
-            <li {{{ (Request::is('encomendas') ? 'class=active' : '') }}} |
+           <!-- <li {{{ (Request::is('encomendas') ? 'class=active' : '') }}} |
                 {{{ (Request::is('encomendas/*') ? 'class=active' : '') }}}
                 {{{ (Request::is('encomendas/*/*') ? 'class=active' : '') }}}>
                     <a href="{{ url('#') }}">
                         <i class='fa fa-users'></i> 
                         <span>Jovens</span>
                     </a>
-            </li>
+            </li>-->
             <li {{{ (Request::is('users') ? 'class=active' : '') }}} |
                 {{{ (Request::is('users/*') ? 'class=active' : '') }}}
                 {{{ (Request::is('users/*/*') ? 'class=active' : '') }}}>
@@ -31,7 +31,7 @@
                     <span>Igrejas</span>
                 </a>
             </li>  
-            <li {{ (Request::is('jovens')  ? 'class=active' : '')}}>
+          <!--  <li {{ (Request::is('jovens')  ? 'class=active' : '')}}>
                 <a href="#">
                     <i class="fa fa-calendar"></i> 
                     <span>Eventos</span> 
@@ -57,7 +57,7 @@
                     <i class='fa fa-area-chart'></i> 
                     <span>Relatórios</span>
                 </a>
-            </li>
+            </li>-->
         </ul>
     </section>
 </aside>

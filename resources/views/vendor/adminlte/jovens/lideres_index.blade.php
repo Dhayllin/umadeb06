@@ -21,27 +21,15 @@
               <tr>
                 <th>Nome</th>
                 <th>Idade</th>
-                <th>Telefone</th>               
-                <th>Cargo</th>
-                <th class="text-right">Opções</th>
+                <th>Telefone</th>  
               </tr>
             </thead>
             <tbody>
               @foreach($list as $item)
-              <tr>
-              
+              <tr>              
                 <td>{{ $item->nome }}</td>
                 <td>{{ $item->idade }}</td>
-                <td>{{ $item->telefone }}</td>  
-                <td> {{ $item->cargo}}
-                <td class="text-right">                 
-                  <a class="btn btn-xs btn-warning" href="#"><i class="glyphicon glyphicon-edit"></i> Editar</a>
-                  <form action="#" method="POST" style="display: inline;" onsubmit="if(confirm('Deletar?')) { return true } else {return false }">
-                    <input type="hidden" name="_method" value="DELETE">
-                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                    <button type="submit" class="btn btn-xs btn-danger"><i class="glyphicon glyphicon-trash"></i> Deletar</button>
-                </form>
-                </td>
+                <td>{{ $item->telefone }}</td>                      
               </tr>
               @endforeach
             </tbody>

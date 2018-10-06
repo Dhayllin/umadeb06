@@ -28,8 +28,7 @@
             </thead>
             <tbody>
               @foreach($list as $item)
-              <tr>
-              
+              <tr>              
                 <td>{{ $item->nome }}</td>
                 <td>{{ $item->idade }}</td>
                 <td>{{ $item->telefone }}</td>  
@@ -40,7 +39,7 @@
                 @endif         
                 <td> {{ $item->cargo}}
                 <td class="text-right">                 
-                  <a class="btn btn-xs btn-warning" href="#"><i class="glyphicon glyphicon-edit"></i> Editar</a>
+                  <a class="btn btn-xs btn-warning" href="{{ route('jovens.edit', $item->id) }}"><i class="glyphicon glyphicon-edit"></i> Editar</a>
                   <form action="{{ route('jovens.destroy', $item->id) }}" method="POST" style="display: inline;" onsubmit="if(confirm('Deletar?')) { return true } else {return false }">
                     <input type="hidden" name="_method" value="DELETE">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">

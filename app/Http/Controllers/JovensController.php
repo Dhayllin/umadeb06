@@ -81,7 +81,11 @@ class JovensController extends Controller
      */
     public function edit($id)
     {
-        //
+       $item = Joven::findOrFail($id);
+       $igrejas = Igreja::all();
+       
+
+       return view('adminlte::jovens/edit',compact('item','igrejas'));
     }
 
     /**
@@ -93,7 +97,22 @@ class JovensController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+       
+        $this->validate($request,[
+            'nome'=>'required|max:255',             
+            'telefone'=>'required'           
+        ]);
+
+        $item = Joven::findOrFail($id);
+        $item->nome = $request->nome;      
+        $item->idade= $request->idade;
+        $item->telefone=$request->telefone;
+        $item->cargo=$request->cargo;
+        $item->igreja_id= $request->igreja_id;
+        $item->igreja_diff= $request->igreja_diff;       
+        $item->save();
+        
+        return view('adminlte::jovens/show',compact('item')); 
     }
 
     /**

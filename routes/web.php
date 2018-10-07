@@ -26,8 +26,8 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('jovens/index_lider_setorial/{igreja_id}','JovensController@lideresIndexSetorial')->name('index_lider_setorial');
   
     Route::get('jovens/{igreja_id}/edit_lider_setorial','JovensController@editLiderSetorial')->name('editLiderSetorial'); 
-    Route::post('jovens/{igreja_id}/updateLiderSetor','JovensController@updateLiderSetor')->name('updateLiderSetor');
-    Route::post('jovens/showLiderSetor/{igreja_id}','JovensController@showLiderSetor')->name('showLiderSetor');
+    Route::post('jovens/{id}','JovensController@updateLiderSetor')->name('updateLiderSetor');
+    Route::get('jovens/showLiderSetor/{igreja_id}','JovensController@showLiderSetor')->name('showLiderSetor');
     
     Route::resource('jovens', 'JovensController');
    

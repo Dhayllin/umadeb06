@@ -134,7 +134,21 @@ class JovensController extends Controller
 
     public function updateLiderSetor(Request $request, $id)
     {
-              
+       
+        $this->validate($request,[
+            'nome'=>'required|max:255',             
+            'telefone'=>'required'           
+        ]);
+
+        $item = Joven::findOrFail($id);
+        $item->nome = $request->nome;      
+        $item->idade= $request->idade;
+        $item->telefone=$request->telefone;
+        $item->cargo=$request->cargo;
+        $item->igreja_id= $request->igreja_id;
+        $item->igreja_diff= $request->igreja_diff;       
+        $item->save();
+        
         return "view('adminlte::jovens/show_lider_setorial',compact('item'))"; 
     }
 

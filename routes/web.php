@@ -31,7 +31,7 @@ Route::group(['middleware' => 'web'], function () {
 
     Route::get('relatorios/presentes', 'UserController@presentes')->name('presentes');
     Route::get('jovens/checkin', 'JovensController@checkin')->name('checkin');
-    Route::post('jovens/{id}','JovensController@checkinUpdate')->name('checkinUpdate');
+    Route::get('jovens/{id}/checkin','JovensController@checkinUpdate')->name('checkinUpdate');
 
 
     

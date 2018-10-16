@@ -9,7 +9,7 @@
   <div class="row">
     <div class="col-md-11">
       <div class="panel panel-default">
-        <div class="panel-heading">I Capacitar - Inscritos <a class="btn btn-xs btn-primary pull-right" href="{{ route('jovens.create') }}"><i class="glyphicon glyphicon-plus"></i> Inscrever participante</a></div>
+        <div class="panel-heading">I Capacitar - Check-in </div>
         @if(Session::has('mensagem_sucesso'))
         <div class="alert alert-success">{{ Session::get('mensagem_sucesso')}}</div>
          @endif 
@@ -18,22 +18,22 @@
             <table class="table table-condensed table-striped">
             <thead>
               <tr>
-                <th>Nome</th>              
-                <th>Igreja</th>              
-                <th class="text-right">Check-in</th>
+                <th class="right aligned">Nome</th>              
+                <th class="right aligned">Igreja</th>              
+                <th  class="right aligned">Check-in</th>
               </tr>
             </thead>
             <tbody>
               @foreach($list as $item)
               <tr>              
-                <td>{{ $item->nome }}</td> 
+                <td  class="right aligned">{{ $item->nome }}</td> 
+                
                 @if($item->descricao != null )             
-                <td>{{ $item->descricao }}</td>  
+                <td class="right aligned">{{ $item->descricao }}</td>  
                 @else    
-                <td>{{ $item->igreja_diff }}</td>  
-                @endif 
-                <td class="text-right">                 
-                  <a class="btn btn-xs btn-primary" href="{{ route('jovens.edit', $item->id) }}">  <i class='fa fa-check-square'></i> </a>                                  
+                <td  class="right aligned">{{ $item->igreja_diff }}</td>  
+                @endif                
+                <td  class="right aligned"><a href="{{$item->id}}/checkin" data-toggle="tooltip" title="" data-original-title="Check-in?" style="color: grey"><i class="fa fa-check-square" aria-hidden="true"></i></a></td> 
                 </form>
                 </td>
               </tr>

@@ -195,19 +195,19 @@ class JovensController extends Controller
 
     public function checkin(){
 
-        $list = DB::table('jovens')->select('jovens.*','igrejas.descricao')->
-                        leftjoin('igrejas','jovens.igreja_id','=','igrejas.id')->
-                        orderBy('nome', 'asc')->
-                        paginate(10);
+        $list = DB::table('jovens')->select('jovens.*','igrejas.descricao')
+                                    ->leftjoin('igrejas','jovens.igreja_id','=','igrejas.id')
+                                    ->orderBy('nome', 'asc')
+                                    ->where('status_presenca',null)
+                                    ->paginate(10);
 
         return view('adminlte::jovens/checkin',compact('list'));
     }
 
-    public function checkinUpdate(Request $request,$id){
+    public function checkinUpdate($id){
 
-        $item = Joven::findOrFail($id);
-        $item->status_presenca = true; 
-        $item->save();
+        $item = Joven::findOrFail($id);       
+        DB::table('jovens')->where('id',  $item->id)->update(['status_presenca' => true]);
 
         \Session::flash('mensagem_sucesso','Check-in feito com sucesso.');
 

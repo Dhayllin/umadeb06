@@ -51,13 +51,19 @@
         <a href="{{ url('#') }}"> <i class='fa fa-calendar'></i> 
             <span> Calendário UMADEB</span>
         </a>
-    </li>  
+    </li> -->
             <li>
-                <a href="{{ url('#') }}">
+                <a href="{{ route('checkin') }}">
+                    <i class='fa fa-calendar-check-o'></i> 
+                    <span>Check-in </span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('presentes') }}">
                     <i class='fa fa-area-chart'></i> 
                     <span>Relatórios</span>
                 </a>
-            </li>-->
+            </li>
         </ul>
     </section>
 </aside>

@@ -51,4 +51,8 @@ class UserController extends Controller
               
         return  Redirect::to('users');   
      }
+
+     public function presentes(){
+         return view('adminlte::relatorios/index');
+     }
 }

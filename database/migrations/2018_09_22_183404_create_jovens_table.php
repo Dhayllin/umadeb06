@@ -21,6 +21,7 @@ class CreateJovensTable extends Migration
             $table->string('cargo');
             $table->integer('igreja_id');
             $table->string('igreja_diff');
+            $table->boolean('status_presenca');
             $table->timestamps();
         });
     }

@@ -191,5 +191,26 @@ class JovensController extends Controller
                                 ->paginate(10);
 
     return  view('adminlte::jovens/index_lider_setorial',compact('list'));
-}
+    }
+
+    public function checkin(){
+
+        $list = DB::table('jovens')->select('jovens.*','igrejas.descricao')->
+                        leftjoin('igrejas','jovens.igreja_id','=','igrejas.id')->
+                        orderBy('nome', 'asc')->
+                        paginate(10);
+
+        return view('adminlte::jovens/checkin',compact('list'));
+    }
+
+    public function checkinUpdate(Request $request,$id){
+
+        $item = Joven::findOrFail($id);
+        $item->status_presenca = true; 
+        $item->save();
+
+        \Session::flash('mensagem_sucesso','Check-in feito com sucesso.');
+
+        return Redirect::to('jovens/checkin');
+    }
 }

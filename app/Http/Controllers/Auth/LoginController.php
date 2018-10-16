@@ -29,7 +29,7 @@ class LoginController extends Controller
      * Show the application's login form.
      *
      * @return \Illuminate\Http\Response
-     */
+     */        
     public function showLoginForm()
     {
         return view('adminlte::auth.login');
@@ -42,6 +42,8 @@ class LoginController extends Controller
      */
     protected function authenticated($request){
          
+        $credentials = $request->only('email', 'password');
+        
          $user = User::where('email',$request->email)->first();
 
          if($user->categoria_lider_id == 3){

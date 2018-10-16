@@ -28,6 +28,12 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('jovens/{igreja_id}/edit_lider_setorial','JovensController@editLiderSetorial')->name('editLiderSetorial'); 
     Route::post('jovens/{id}','JovensController@updateLiderSetor')->name('updateLiderSetor');
     Route::get('jovens/showLiderSetor/{igreja_id}','JovensController@showLiderSetor')->name('showLiderSetor');
+
+    Route::get('relatorios/presentes', 'UserController@presentes')->name('presentes');
+    Route::get('jovens/checkin', 'JovensController@checkin')->name('checkin');
+    Route::post('jovens/{id}','JovensController@checkinUpdate')->name('checkinUpdate');
+
+
     
     Route::resource('jovens', 'JovensController');
    

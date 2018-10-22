@@ -8,15 +8,7 @@
                         <i class='fa fa-dashboard '></i> 
                         <span>{{ trans('adminlte_lang::message.home') }}</span>
                     </a>
-            </li>
-           <!-- <li {{{ (Request::is('encomendas') ? 'class=active' : '') }}} |
-                {{{ (Request::is('encomendas/*') ? 'class=active' : '') }}}
-                {{{ (Request::is('encomendas/*/*') ? 'class=active' : '') }}}>
-                    <a href="{{ url('#') }}">
-                        <i class='fa fa-users'></i> 
-                        <span>Jovens</span>
-                    </a>
-            </li>-->
+            </li>    
             <li {{{ (Request::is('users') ? 'class=active' : '') }}} |
                 {{{ (Request::is('users/*') ? 'class=active' : '') }}}
                 {{{ (Request::is('users/*/*') ? 'class=active' : '') }}}>
@@ -31,17 +23,18 @@
                     <span>Igrejas</span>
                 </a>
             </li>  
-          <li {{ (Request::is('eventos')  ? 'class=active' : '')}}>
+          <li {{ (Request::is('eventos')  ? 'class=active' : '') |
+                 (Request::is('eventos/*') ? 'class=active' : '') }}>
                 <a href="{{ url('eventos') }}">
                     <i class="fa fa-calendar"></i> 
                     <span>Eventos</span>                   
                 </a>                           
             </li> 
-            <li {{ (Request::is('eventos/calendario') ? 'class=active' : '') }}>
-        <a href="{{ route('calendario') }}"> <i class='fa fa-calendar'></i> 
-            <span> Calendário UMADEB</span>
-        </a>
-    </li> 
+          <li {{ (Request::is('agendas/calendario') ? 'class=active' : '') }}>
+                <a href="{{ route('calendario') }}"> <i class='fa fa-calendar'></i> 
+                    <span> Calendário UMADEB</span>
+                </a>
+            </li> 
             <li>
                 <a href="{{ route('checkin') }}">
                     <i class='fa fa-calendar-check-o'></i> 

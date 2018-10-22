@@ -8,7 +8,8 @@
                     <span>{{ trans('adminlte_lang::message.home') }}</span>
                 </a>
             </li>  
-            <li {{ (Request::is('eventos/calendario') ? 'class=active' : '') }}>
+            <li {{ (Request::is('agendas/calendario') ? 'class=active' : '') |
+                   (Request::is('eventos/*') ? 'class=active' : '') }}>
                 <a href="{{ route('calendario') }}"> <i class='fa fa-calendar'></i> 
                     <span> Calendário UMADEB</span>
                 </a>

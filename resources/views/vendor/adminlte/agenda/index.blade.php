@@ -57,7 +57,7 @@
            window.open(event.url);
            return false;
         }else if (event.url) {
-           var paramUri = "{{ url('/') }}/funcionarios/"+event.url+"/visualizar";
+           var paramUri = "{{ url('/') }}/eventos/"+event.url;
            window.open(paramUri);
           return false;
          }

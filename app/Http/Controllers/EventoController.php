@@ -7,6 +7,7 @@ use App\Evento;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Auth\Events\Authenticated;
 
 class EventoController extends Controller
@@ -35,6 +36,12 @@ class EventoController extends Controller
         return view('adminlte::eventos/show',compact('evento'));
     }
 
+    public function show($id){
+       
+        $evento = Evento::findOrFail($id);
+       
+        return view('adminlte::eventos/show',compact('evento'));
+    }
     public function calendario()
     {
         return view('adminlte::agenda/index');
@@ -51,15 +58,27 @@ class EventoController extends Controller
             $evento = new Evento();
             $evento->url = $event->id;
             $evento->title = $event->nome;
-            $evento->start =$event->dt_inicio;            
+            $evento->start =$event->dt_inicio;        
+            $evento->end =$event->dt_fim;      
             $evento->allDay = true;
-            $evento->backgroundColor = "#66CDAA";
-            $evento->color = "#66CDAA";
+            $evento->backgroundColor = "#00a65a";
+            $evento->color = "#00a65a";
             $evento->icon = "music";
             $listaEventos->push($evento);
         }
   
           return  $listaEventos;
+    }
+
+    public function destroy($id){
+
+        $item = Evento::findOrFail($id);
+        $item->delete();
+
+        \Session::flash('mensagem_sucesso','Deletado com sucesso!');
+
+        return Redirect::to('/eventos');
+
     }
 
 }

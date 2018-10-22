@@ -33,8 +33,10 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('jovens/checkin', 'JovensController@checkin')->name('checkin');
     Route::get('jovens/{id}/checkin','JovensController@checkinUpdate')->name('checkinUpdate');
 
-    Route::get('eventos/calendario','EventoController@calendario')->name('calendario');
+    Route::get('agendas/calendario','EventoController@calendario')->name('calendario');   
     Route::get('agendas/api','EventoController@api')->name('agendas.api');
+  
+
 
 
     

@@ -32,8 +32,9 @@
                 <td>{{ $evento->descricao }}</td>
                 <td>{{  date('d/m/Y',strtotime($evento->dt_inicio)) }}</td>                   
                 <td>{{  date('d/m/Y',strtotime($evento->dt_fim)) }}</td>                 
-                <td class="text-right">                 
-                  <a class="btn btn-xs btn-warning" href="{{ route('eventos.edit', $evento->id) }}"><i class="glyphicon glyphicon-edit"></i> Editar</a>
+                <td class="text-right">     
+                    <a class="btn btn-xs btn-primary" href="{{ route('eventos.show', $evento->id) }}"><i class="glyphicon glyphicon-edit"></i> Visualizar</a>            
+                  <a class="btn btn-xs btn-warning" href="#"><i class="glyphicon glyphicon-edit"></i> Editar</a>
                   <form action="{{ route('eventos.destroy', $evento->id) }}" method="POST" style="display: inline;" onsubmit="if(confirm('Deletar?')) { return true } else {return false }">
                     <input type="hidden" name="_method" value="DELETE">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">

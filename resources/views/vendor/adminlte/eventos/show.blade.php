@@ -25,7 +25,7 @@
                             <td>{{ date('d/m/Y',strtotime($evento->dt_inicio)) }}</td>
                         </tr>						
                         <tr>
-                            <th>Cargo</th>
+                            <th>Data Fim</th>
                             <td>{{ date('d/m/Y',strtotime($evento->dt_fim)) }}</td>
                         </tr>                                          
                     </table>

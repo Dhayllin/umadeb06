@@ -11,8 +11,8 @@
   function drawChart() {
     var data = google.visualization.arrayToDataTable([
       ['Task', 'Hours per Day'],
-      ['Presentes',      2],   
-      ['Ausentes',    7]
+      ['Ausentes',      2],   
+      ['Presentes',    7]
     ]);
 
     var options = {

@@ -31,27 +31,17 @@
                     <span>Igrejas</span>
                 </a>
             </li>  
-          <!--  <li {{ (Request::is('jovens')  ? 'class=active' : '')}}>
-                <a href="#">
+          <li {{ (Request::is('eventos')  ? 'class=active' : '')}}>
+                <a href="{{ url('eventos') }}">
                     <i class="fa fa-calendar"></i> 
-                    <span>Eventos</span> 
-                    <i class="fa fa-angle-left pull-right"></i>
-                </a>
-                <ul class="treeview-menu">
-                    <li  {{ (Request::is('jovens')  ? 'class=active' : '')}}>
-                        <a href="{{ route('jovens.index') }}"> <i class='fa fa-book'></i> 
-                            <span> I Capacitar</span>
-                        </a>
-                    </li>  
-                </ul>               
+                    <span>Eventos</span>                   
+                </a>                           
             </li> 
-            <li {{{ (Request::is('manage/users/*/*') ? 'class=active' : '')|
-            (Request::is('manage/users/*') ? 'class=active' : '') |
-            (Request::is('manage/users') ? 'class=active' : '') }}}>
-        <a href="{{ url('#') }}"> <i class='fa fa-calendar'></i> 
+            <li {{ (Request::is('eventos/calendario') ? 'class=active' : '') }}>
+        <a href="{{ route('calendario') }}"> <i class='fa fa-calendar'></i> 
             <span> Calendário UMADEB</span>
         </a>
-    </li> -->
+    </li> 
             <li>
                 <a href="{{ route('checkin') }}">
                     <i class='fa fa-calendar-check-o'></i> 

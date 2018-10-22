@@ -33,13 +33,15 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('jovens/checkin', 'JovensController@checkin')->name('checkin');
     Route::get('jovens/{id}/checkin','JovensController@checkinUpdate')->name('checkinUpdate');
 
+    Route::get('eventos/calendario','EventoController@calendario')->name('calendario');
+    Route::get('agendas/api','EventoController@api')->name('agendas.api');
+
 
     
-    Route::resource('jovens', 'JovensController');
-   
-    Route::resource('igrejas', 'IgrejaController');
-
     Route::resource('users', 'UserController');
+    Route::resource('jovens', 'JovensController');   
+    Route::resource('igrejas', 'IgrejaController');    
+    Route::resource('eventos', 'EventoController');
    
     Route::get('lideres_home/{igreja_id}','HomeController@lideresHome')->name('lideres_home');
 });

@@ -9,6 +9,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
     @include('adminlte::layouts.partials.htmlheader')
 @show
 
+@yield('css-customizados')
+
 <!--
 BODY TAG OPTIONS:
 =================
@@ -62,8 +64,12 @@ desired effect
 
 </div><!-- ./wrapper -->
 </div>
+
 @section('scripts')
     @include('adminlte::layouts.partials.scripts')
 @show
+@yield('scripts-adicionais')
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 </body>
 </html>

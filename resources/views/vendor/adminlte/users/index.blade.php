@@ -27,7 +27,7 @@
             <tbody>
               @foreach($list as $item)
               <tr>              
-                <td></td>
+                <td>{{ $item->id }}</td>
                 <td>{{ $item->name }}</td>
                 <td>{{ $item->descricao_categoria }}</td>
                 <td>{{ $item->telefone }}

@@ -12,9 +12,16 @@ use Illuminate\Auth\Events\Authenticated;
 
 class EventoController extends Controller
 {
+
+    private $evento;
+
+    public function __construct(Evento $evento)
+    {
+        $this->evento = $evento;
+    }
     public function index(){
 
-        $list = DB::table('eventos')->select('eventos.*')->paginate(10);
+        $list =  $this->evento->select('eventos.*')->paginate(10);
 
         return view('adminlte::eventos/index',compact('list'));
     }
@@ -29,16 +36,15 @@ class EventoController extends Controller
             'nome'=>'required|max:255',             
             'dt_inicio'=>'required'           
         ]);
-
-        $evento = new Evento();
-        $evento = $evento->create($request->all());      
+     
+        $evento =  $this->evento->create($request->all());      
 
         return view('adminlte::eventos/show',compact('evento'));
     }
 
     public function show($id){
        
-        $evento = Evento::findOrFail($id);
+        $evento =  $this->evento->findOrFail($id);
        
         return view('adminlte::eventos/show',compact('evento'));
     }
@@ -49,7 +55,7 @@ class EventoController extends Controller
 
     public function api()
     {
-        $eventos = DB::table('eventos')->select('eventos.*')->get();
+        $eventos =  $this->evento->select('eventos.*')->get();
 
         $listaEventos = new Collection();
 
@@ -72,7 +78,7 @@ class EventoController extends Controller
 
     public function destroy($id){
 
-        $item = Evento::findOrFail($id);
+        $item =$this->evento->findOrFail($id);
         $item->delete();
 
         \Session::flash('mensagem_sucesso','Deletado com sucesso!');

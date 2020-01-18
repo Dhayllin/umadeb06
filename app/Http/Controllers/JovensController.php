@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use DB;
 use App\Joven;
 use App\Igreja;
 use Illuminate\Http\Request;
@@ -12,6 +11,16 @@ use Illuminate\Support\Facades\Redirect;
 
 class JovensController extends Controller
 {
+    private $joven;
+    private $igreja;
+
+    public function __construct(Joven $joven, Igreja $igreja)
+    {
+        $this->joven  = $joven;   
+        $this->igreja = $igreja;     
+    }
+
+
     /**
      * Display a listing of the resource.
      *
@@ -20,7 +29,7 @@ class JovensController extends Controller
 
     public function index()
     {
-        $list = DB::table('jovens')->select('jovens.*','igrejas.descricao')->
+        $list =  $this->joven->select('jovens.*','igrejas.descricao')->
                         leftjoin('igrejas','jovens.igreja_id','=','igrejas.id')->
                         orderBy('nome', 'asc')->
                         paginate(10);
@@ -35,7 +44,7 @@ class JovensController extends Controller
      */
     public function create()
     {        
-        $igrejas = Igreja::all();
+        $igrejas = $this->igreja->all();
                          
         return view('adminlte::jovens/create',compact('igrejas'));
     }
@@ -52,14 +61,12 @@ class JovensController extends Controller
             'nome'=>'required|max:255',
         ]);
 
-
-        $joven= new Joven();
-        $joven =  $joven->create($request->all());      
+        $joven =  $this->joven->create($request->all());      
          
         \Session::flash('mensagem_sucesso','Cadastrado com sucesso!');
         \Session::flash('mensagem_sucesso_warning','Você pode inscrever mais participantes.');    
               
-          return  Redirect::to('/');   
+        return  Redirect::to('/');   
     }
 
     /**
@@ -68,17 +75,11 @@ class JovensController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    
     public function show($id)
     {
         
     }
-
-    public function  showLiderSetor($id)
-    {
-        
-    }
-
-   
 
     /**
      * Show the form for editing the specified resource.
@@ -88,8 +89,8 @@ class JovensController extends Controller
      */
     public function edit($id)
     {
-       $item = Joven::findOrFail($id);
-       $igrejas = Igreja::all();
+       $item    = $this->joven->findOrFail($id);
+       $igrejas = $this->igreja->all();
        
 
        return view('adminlte::jovens/edit',compact('item','igrejas'));
@@ -97,8 +98,8 @@ class JovensController extends Controller
 
     public function editLiderSetorial($id)
     {
-       $item = Joven::findOrFail($id);
-       $igrejas = Igreja::all();
+       $item    = $this->joven->findOrFail($id);
+       $igrejas = $this->igreja->all();
        
 
        return view('adminlte::jovens/edit_lider_setorial',compact('item','igrejas'));
@@ -119,7 +120,7 @@ class JovensController extends Controller
             'telefone'=>'required'           
         ]);
 
-        $item = Joven::findOrFail($id);
+        $item =  $this->joven->findOrFail($id);
         $item->nome = $request->nome;      
         $item->idade= $request->idade;
         $item->telefone=$request->telefone;
@@ -140,7 +141,7 @@ class JovensController extends Controller
             'telefone'=>'required'           
         ]);
 
-        $item = Joven::findOrFail($id);
+        $item =  $this->joven->findOrFail($id);
         $item->nome = $request->nome;      
         $item->idade= $request->idade;
         $item->telefone=$request->telefone;
@@ -160,7 +161,7 @@ class JovensController extends Controller
      */
     public function destroy($id)
     {
-        $item = Joven::findOrFail($id);
+        $item =  $this->joven->findOrFail($id);
         $item->delete();
 
         \Session::flash('mensagem_sucesso','Deletado com sucesso!');
@@ -170,7 +171,7 @@ class JovensController extends Controller
 
    public function lideresIndex($id){
 
-        $list = DB::table('jovens')->select('jovens.*','igrejas.descricao')
+        $list = $this->joven->select('jovens.*','igrejas.descricao')
                                     ->where('igreja_id',$id)
                                     ->leftjoin('igrejas','jovens.igreja_id','=','igrejas.id')                                
                                     ->orderBy('nome', 'asc')
@@ -184,7 +185,7 @@ class JovensController extends Controller
 
    public function lideresIndexSetorial($id){
 
-    $list = DB::table('jovens')->select('jovens.*','igrejas.descricao')
+    $list = $this->joven->select('jovens.*','igrejas.descricao')
                                 ->where('igreja_id',$id)
                                 ->leftjoin('igrejas','jovens.igreja_id','=','igrejas.id')                                
                                 ->orderBy('nome', 'asc')
@@ -195,7 +196,7 @@ class JovensController extends Controller
 
     public function checkin(){
 
-        $list = DB::table('jovens')->select('jovens.*','igrejas.descricao')
+        $list = $this->joven->select('jovens.*','igrejas.descricao')
                                     ->leftjoin('igrejas','jovens.igreja_id','=','igrejas.id')
                                     ->orderBy('nome', 'asc')
                                     ->where('status_presenca',null)
@@ -206,8 +207,8 @@ class JovensController extends Controller
 
     public function checkinUpdate($id){
 
-        $item = Joven::findOrFail($id);       
-        DB::table('jovens')->where('id',  $item->id)->update(['status_presenca' => true]);
+        $item = $this->joven->findOrFail($id);       
+        $this->joven->where('id',  $item->id)->update(['status_presenca' => true]);
 
         \Session::flash('mensagem_sucesso','Check-in feito com sucesso.');
 

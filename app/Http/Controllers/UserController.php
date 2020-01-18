@@ -1,8 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use DB;
+ 
 use App\User;
 use App\Igreja;
 use Illuminate\Http\Request;
@@ -12,9 +11,19 @@ use Illuminate\Support\Facades\Redirect;
 
 class UserController extends Controller
 {
+    private $user;
+    private $igreja;
+
+    public function __construct(User $user, Igreja $igreja)
+    {
+        $this->middleware('auth');
+        $this->user  = $user;
+        $this->igreja = $igreja;
+    }
+
     public function index(){        
 
-        $list = DB::table('users')->select('users.*','igrejas.descricao','categoria_liders.descricao_categoria')
+        $list = $this->user->select('users.*','igrejas.descricao','categoria_liders.descricao_categoria')
                                     ->leftjoin('igrejas','users.igreja_id','=','igrejas.id')
                                     ->leftjoin('categoria_liders','users.categoria_lider_id','=','categoria_liders.id')                                         
                                     ->orderBy('name', 'asc')                                    
@@ -24,7 +33,7 @@ class UserController extends Controller
     }
 
     public function create(){
-        $igrejas = Igreja::all();
+        $igrejas = $this->igreja->all();
         $categoria_lideres = Categoria_lider::all();
 
         return view('adminlte::users/create',compact('igrejas','categoria_lideres'));

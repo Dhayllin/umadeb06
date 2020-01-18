@@ -19,6 +19,7 @@ class EventoController extends Controller
     {
         $this->evento = $evento;
     }
+    
     public function index(){
 
         $list =  $this->evento->select('eventos.*')->paginate(10);

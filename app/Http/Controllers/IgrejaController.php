@@ -7,10 +7,16 @@ use App\Igreja;
 
 class IgrejaController extends Controller
 {
-        public function index(){
+    private $igreja;
 
-            $list = Igreja::all();
+    public function __construct(Igreja $igreja )
+    {
+        $this->igreja = $igreja;
+    }
+    public function index(){
 
-            return view('adminlte::igrejas/index',compact('list'));         
-        }
+        $list =  $this->igreja->all();
+
+        return view('adminlte::igrejas/index',compact('list'));         
+    }
 }

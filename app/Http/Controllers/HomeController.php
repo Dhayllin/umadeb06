@@ -19,14 +19,17 @@ use Illuminate\Http\Request;
  */
 class HomeController extends Controller
 {
+    private $joven;
+    
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(Joven $joven)
     {
         $this->middleware('auth');
+        $this->joven = $joven;
     }
 
     /**

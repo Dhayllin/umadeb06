@@ -11,6 +11,7 @@ class IgrejaController extends Controller
 
     public function __construct(Igreja $igreja )
     {
+        $this->middleware('auth');
         $this->igreja = $igreja;
     }
     public function index(){
